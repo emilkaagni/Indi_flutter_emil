@@ -19,4 +19,12 @@ const alreadyHaveAccount = "Already have an account?";
 
 //home strings
 const home="Home", categories = "Categories", cart = "Cart", account = "Account";
+//home screen strings
+const searchanything = "Search anything...",
+    todayDeal = "Today's deal",
+    flashsale = "Flash Sale",
+    topSellers = "Top Sellers",
+    brand = "Brand",
+    topCategories = "Top Categories",
+    featuredCategories = "Featured Categories";
 

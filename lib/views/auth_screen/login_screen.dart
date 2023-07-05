@@ -1,7 +1,7 @@
 import 'package:Indi_shark/consts/consts.dart';
 import 'package:Indi_shark/consts/list.dart';
 import 'package:Indi_shark/views/auth_screen/signup_screen.dart';
-import 'package:Indi_shark/views/home_screen/home_screen.dart';
+import 'package:Indi_shark/views/home_screen/home.dart';
 import 'package:Indi_shark/widgets_common/applogo_widget.dart';
 import 'package:Indi_shark/widgets_common/bg_widget.dart';
 import 'package:Indi_shark/widgets_common/custom_textfield.dart';
@@ -39,7 +39,7 @@ class LoginScreen extends StatelessWidget {
                     title: login,
                     textColor: whiteColor,
                     onPress: (){
-                      Get.to(()=>HomeScreen());
+                      Get.to(()=>Home());
 
                 })
                     .box
