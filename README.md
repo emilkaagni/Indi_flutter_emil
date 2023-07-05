@@ -17,4 +17,4 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 =======
 # Indi_flutter_emil
-d439bd491f7fb5c863bdc9e3126d5e2d3424ec78
+>>>>>>d439bd491f7fb5c863bdc9e3126d5e2d3424ec78

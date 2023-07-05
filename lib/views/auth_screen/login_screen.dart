@@ -1,6 +1,7 @@
 import 'package:Indi_shark/consts/consts.dart';
 import 'package:Indi_shark/consts/list.dart';
 import 'package:Indi_shark/views/auth_screen/signup_screen.dart';
+import 'package:Indi_shark/views/home_screen/home_screen.dart';
 import 'package:Indi_shark/widgets_common/applogo_widget.dart';
 import 'package:Indi_shark/widgets_common/bg_widget.dart';
 import 'package:Indi_shark/widgets_common/custom_textfield.dart';
@@ -33,7 +34,14 @@ class LoginScreen extends StatelessWidget {
                     child: TextButton(onPressed: (){}, child: forgetPass.text.make())),
                 5.heightBox,
                 // ourButton().box.width(context.screenWidth - 50).make(),
-                ourButton(color: redColor, title: login, textColor: whiteColor, onPress: (){})
+                ourButton(
+                    color: redColor,
+                    title: login,
+                    textColor: whiteColor,
+                    onPress: (){
+                      Get.to(()=>HomeScreen());
+
+                })
                     .box
                     .width(context.screenWidth -50)
                     .make(),
