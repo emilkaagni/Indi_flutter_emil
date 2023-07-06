@@ -22,7 +22,7 @@ class LoginScreen extends StatelessWidget {
             (context.screenHeight*0.1).heightBox,
             applogoWidget(),
             10.heightBox,
-            "Log in to $appname".text.fontFamily(bold).white.size(18).make(),
+            "Log in to $appname".text.fontFamily(bold).black.size(18).make(),
             15.heightBox,
 
             Column(
