@@ -35,3 +35,15 @@ const searchanything = "Search anything...",
     featuredProducts = "Featured Products",
     featuredCategories = "Featured Categories";
 
+// category strings
+const womenClothing = "Women Clothing",
+    menClothingFashion ="Men Clothing & Fashion",
+    compAccess = "Computer & Accessories",
+    automobile = "Automobile",
+    kidToys = "Kids & Toys",
+    sports = "Sports",
+    jewelery = "Jewelary",
+    cellphone = "Cellphone & tab",
+    furniture = "Furniture";
+
+
