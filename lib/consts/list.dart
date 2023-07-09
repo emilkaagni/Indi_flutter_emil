@@ -15,3 +15,6 @@ const categoriesList = [womenDress, menClothingFashion, compAccess, automobile, 
 const categoryImages = [imgFc1, imgFc2, imgFc3, imgFc4, imgFc5, imgFc6, imgFc7, imgFc8, imgFc9];
 
 const itemDetailButtonsList = [video, reviews, privacyPolicy, returnpolicy,supportPolicy];
+
+const profileButtonsList = [orders, wishlist, message];
+const profileButtonsIcon = [icOrders, icOrders, icMessages];
