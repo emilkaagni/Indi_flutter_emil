@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "244656018768",
+    "project_id": "sharkmart-c53bc",
+    "storage_bucket": "sharkmart-c53bc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244656018768:android:7ed8ae02df81c5c5704855",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244656018768-k69svj2vfrq6965k1u46q2mbjf882p1t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.application",
+            "certificate_hash": "f6b774065bd17d9c46470d3f4bb3f5ddb53494db"
+          }
+        },
+        {
+          "client_id": "244656018768-c9rjfngif3jtce5a2jasne9u98os1gkr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5ormrRLcB-AKW8gfD0bZLt8TY-Sd_yjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244656018768-c9rjfngif3jtce5a2jasne9u98os1gkr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244656018768:android:4ccdeadcb0315916704855",
+        "android_client_info": {
+          "package_name": "com.example.Indi_shark"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244656018768-c9rjfngif3jtce5a2jasne9u98os1gkr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA5ormrRLcB-AKW8gfD0bZLt8TY-Sd_yjs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "244656018768-c9rjfngif3jtce5a2jasne9u98os1gkr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
