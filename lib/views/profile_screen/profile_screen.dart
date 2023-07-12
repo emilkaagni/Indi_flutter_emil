@@ -1,8 +1,11 @@
 import 'package:Indi_shark/consts/consts.dart';
 import 'package:Indi_shark/consts/list.dart';
+import 'package:Indi_shark/controllers/auth_controller.dart';
+import 'package:Indi_shark/views/auth_screen/login_screen.dart';
 import 'package:Indi_shark/views/profile_screen/components/details_card.dart';
 import 'package:Indi_shark/widgets_common/bg_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -46,7 +49,10 @@ class ProfileScreen extends StatelessWidget {
                             color: whiteColor,
                           )
                         ),
-                        onPressed: (){},
+                        onPressed: () async{
+                          await Get.put(AuthController()).signoutMethod(context);
+                          Get.offAll(()=> const LoginScreen());
+                        },
                         child: logout.text.fontFamily(semibold).white.make(),
                       )
 
