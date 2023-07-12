@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:Indi_shark/consts/consts.dart';
 import 'package:Indi_shark/controllers/profile_controller.dart';
 import 'package:Indi_shark/widgets_common/bg_widget.dart';
@@ -7,33 +9,73 @@ import 'package:Indi_shark/widgets_common/our_button.dart';
 import 'package:get/get.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  const EditProfileScreen({super.key});
+
+  final dynamic data;
+
+
+  const EditProfileScreen({Key? key, this.data}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<ProfileController>();
+
+
+
     return bgWidget(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(),
-        body: Column(
-            mainAxisSize: MainAxisSize.min ,
-            children: [
-            Image.asset(imgProfile2, width: 100, fit: BoxFit.cover).box.roundedFull.clip(Clip.antiAlias).make(),
-            10.heightBox,
-            ourButton(color: redColor, onPress: (){
-              Get.find<ProfileController>().changeImage(context);
-            }, textColor: whiteColor, title: "change"),
-            Divider(),
-            20.heightBox,
-            customTextField(hint: nameHint, title: name, isPass: false),
-            customTextField(hint: password, title: password, isPass: true),
+        body: Obx(()=>
+          Column(
+              mainAxisSize: MainAxisSize.min ,
+              children: [
+
+
+                //if data imafe url and controller path is empty
+                data['imageUrl']=='' && controller.profileImgPath.isEmpty
+                    ? Image.asset(imgProfile2, width: 100, fit: BoxFit.cover).box.roundedFull.clip(Clip.antiAlias).make()
+                    //if data is not empty but controller path is empty
+                    : data['imageUrl']!=''&& controller.profileImgPath.isEmpty
+                    ? Image.network(data['imageUrl'], width: 100,
+                  fit:BoxFit.cover,)
+                    //else if controller path is not empty but data image url is
+                    :Image.file(
+                  File(controller.profileImgPath.value),
+                  width: 100,
+                  fit: BoxFit.cover,
+                ).box.roundedFull.clip(Clip.antiAlias).make(),
+
+
+              10.heightBox,
+              ourButton(color: redColor, onPress: (){
+                // Get.find<ProfileController>()
+                    controller.changeImage(context);
+              }, textColor: whiteColor, title: "change"),
+              const Divider(),
               20.heightBox,
-              SizedBox(
-                width: context.screenWidth -60,
-                  child: ourButton(color: redColor, onPress: (){}, textColor: whiteColor, title: "Save")),
+              customTextField(controller: controller.nameController ,hint: nameHint, title: name, isPass: false),
+              customTextField(controller: controller.passController, hint: password, title: password, isPass: true),
+                20.heightBox,
+                controller.isloading.value?
+                    CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(redColor),
+                    ):
+                SizedBox(
+                  width: context.screenWidth -60,
+                    child: ourButton(color: redColor, onPress: () async{
+                      await controller.uploadProfileImage();
+                      await controller.updateProfile(
+                        imgUrl: controller.profileImageLink,
+                        name: controller.nameController.text,
+                        password: controller.passController.text,
+                      );
+                      VxToast.show(context, msg: "Updated");
+                    }, textColor: whiteColor, title: "Save")),
 
 
-            ],
-        ).box.white.shadowSm.padding(const EdgeInsets.all(16)).margin(const EdgeInsets.only(top: 50, left: 12, right: 12)).rounded.make(),
+              ],
+          ).box.white.shadowSm.padding(const EdgeInsets.all(16)).margin(const EdgeInsets.only(top: 50, left: 12, right: 12)).rounded.make(),
+        ),
       )
     );
   }
