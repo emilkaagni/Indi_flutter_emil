@@ -1,12 +1,14 @@
 import 'package:Indi_shark/consts/colors.dart';
 import 'package:Indi_shark/consts/consts.dart';
 import 'package:Indi_shark/views/auth_screen/login_screen.dart';
+import 'package:Indi_shark/views/home_screen/home.dart';
 import 'package:Indi_shark/widgets_common/applogo_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -17,7 +19,15 @@ class _SplashScreenState extends State<SplashScreen> {
   changeScreen(){
     Future.delayed(const Duration(seconds: 3),(){
     //  using getx
-      Get.to(()=>const LoginScreen());
+    //   Get.to(()=>const LoginScreen());
+      auth.authStateChanges().listen((User? user) {
+        if(user == null && mounted){
+          Get.to(()=> const LoginScreen());
+        }
+        else{
+          Get.to(()=> const Home());
+        }
+      });
     });
   }
 

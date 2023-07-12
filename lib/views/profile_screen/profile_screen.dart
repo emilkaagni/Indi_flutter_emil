@@ -1,8 +1,10 @@
 import 'package:Indi_shark/consts/consts.dart';
 import 'package:Indi_shark/consts/list.dart';
 import 'package:Indi_shark/controllers/auth_controller.dart';
+import 'package:Indi_shark/controllers/profile_controller.dart';
 import 'package:Indi_shark/views/auth_screen/login_screen.dart';
 import 'package:Indi_shark/views/profile_screen/components/details_card.dart';
+import 'package:Indi_shark/views/profile_screen/edit_profile_screen.dart';
 import 'package:Indi_shark/widgets_common/bg_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,8 +12,11 @@ import 'package:get/get.dart';
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(ProfileController());
+
     return bgWidget(
       child: Scaffold(
         body: SafeArea(
@@ -24,7 +29,9 @@ class ProfileScreen extends StatelessWidget {
                   child: const Align(
                     alignment: Alignment.topRight,
                     child: const Icon(Icons.edit, color: whiteColor)
-                  ).onTap(() { }),
+                  ).onTap(() {
+                    Get.to(()=> const EditProfileScreen());
+                  }),
                 ),
                 //users details section
 
