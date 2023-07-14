@@ -12,7 +12,7 @@ const featuredTitles1 = [womenDress, girlsDress, girlsWatches];
 const featuredTitles2 = [boysGlasses, mobilePhone, tShirts];
 
 const categoriesList = [womenDress, menClothingFashion, compAccess, automobile, kidToys, sports, jewelery, cellphone, furniture];
-const categoryImages = [imgFc1, imgFc2, imgFc3, imgFc4, imgFc5, imgFc6, imgFc7, imgFc8, imgFc9];
+const categoryImages = [imgS1, imgFc1, imgFc2, imgFc3, imgFc4, imgFc5, imgS11, imgFc6, imgFc9];
 
 const itemDetailButtonsList = [video, reviews, privacyPolicy, returnpolicy,supportPolicy];
 

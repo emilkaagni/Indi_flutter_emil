@@ -46,7 +46,7 @@ storeUserData({name, password, email})async{
      'password': password,
      'email':email,
      'imageUrl':'',
-     'id': currentUser,
+     'id': currentUser!.uid,
      'cart_count':"00",
      'order_count':"00",
      'wishlist_count':"00",

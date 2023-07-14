@@ -21,10 +21,9 @@ class ProfileScreen extends StatelessWidget {
 
     return bgWidget(
       child: Scaffold(
-        body: StreamBuilder(
-          stream: FirestoreServices.getUser(currentUser!.uid),
-
-          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
+        body: FutureBuilder(
+          future: FirestoreServices.getUser(currentUser?.uid),
+          builder: (BuildContext context, AsyncSnapshot<DocumentSnapshot>  snapshot){
             if(!snapshot.hasData){
               return const Center(
                 child: CircularProgressIndicator(
@@ -33,9 +32,10 @@ class ProfileScreen extends StatelessWidget {
               );
             }
             else{
-
-              var data = snapshot.data!.docs[0];
-
+              if(snapshot.data == null){
+                return Text("e");
+              }
+              var data = snapshot.data!;
               return  SafeArea(
                   child: Column(
                     children: [
@@ -45,11 +45,11 @@ class ProfileScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: const Align(
                             alignment: Alignment.topRight,
-                            child: const Icon(Icons.edit, color: whiteColor)
+                            child: Icon(Icons.edit, color: whiteColor)
                         ).onTap(() {
 
-                          controller.nameController.text = data['name'];
-                          controller.passController.text = data['password'];
+                          controller.nameController.text = data['name'].toString();
+                          // controller.passController.text = data['password'];
 
                           Get.to(()=> EditProfileScreen(data: data));
                         }),
@@ -121,7 +121,8 @@ class ProfileScreen extends StatelessWidget {
                         },
                       ).box.white.rounded.margin(EdgeInsets.all(12)).padding(const EdgeInsets.symmetric(horizontal: 16)).shadowSm.make().box.color(Colors.white).make(),
                     ],
-                  ));
+                  )
+              );
             }
           },
         ),

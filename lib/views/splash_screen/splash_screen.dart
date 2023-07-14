@@ -18,16 +18,17 @@ class _SplashScreenState extends State<SplashScreen> {
   //creating a method to change screen
   changeScreen(){
     Future.delayed(const Duration(seconds: 3),(){
-    //  using getx
-    //   Get.to(()=>const LoginScreen());
-      auth.authStateChanges().listen((User? user) {
-        if(user == null && mounted){
-          Get.to(()=> const LoginScreen());
-        }
-        else{
-          Get.to(()=> const Home());
-        }
-      });
+      //  using getx
+        Get.to(()=>const LoginScreen());
+        // Get.to(()=>const Home());
+      // auth.authStateChanges().listen((User? user) {
+      //   if(user == null && mounted){
+      //     Get.to(()=> const LoginScreen());
+      //   }
+      //   else{
+      //     Get.to(()=> const Home());
+      //   }
+      // });
     });
   }
 
@@ -59,7 +60,7 @@ class _SplashScreenState extends State<SplashScreen> {
             30.heightBox,
 
 
-            ],
+          ],
         ),
 
       ),

@@ -1,4 +1,5 @@
 import 'package:Indi_shark/consts/consts.dart';
+import 'package:Indi_shark/controllers/product_controller.dart';
 import 'package:Indi_shark/views/category_screen/item_details.dart';
 import 'package:Indi_shark/widgets_common/bg_widget.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,9 @@ class CategoryDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var controller = Get.find<ProductController>();
+
     return bgWidget(
       child: Scaffold(
         appBar: AppBar(
@@ -18,22 +22,25 @@ class CategoryDetails extends StatelessWidget {
         body: Container(
           padding: EdgeInsets.all(12),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SingleChildScrollView(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: List.generate(
-                      6,
-                          (index) => "Baby Clothing"
-                              .text.fontFamily(semibold)
+                      controller.subcat.length,
+                          (index) => "${controller.subcat[index]}"
+                              .text
+                              .size(12)
+                              .fontFamily(semibold)
                               .color(darkFontGrey)
                               .makeCentered()
                               .box
                               .white
                               .rounded
                               .size(120,60)
-                              .margin(EdgeInsets.symmetric(horizontal: 4))
+                              .margin(const EdgeInsets.symmetric(horizontal: 4))
                               .make()),
                 ),
               ),

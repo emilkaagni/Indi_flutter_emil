@@ -1,4 +1,5 @@
 import 'package:Indi_shark/consts/list.dart';
+import 'package:Indi_shark/controllers/product_controller.dart';
 import 'package:Indi_shark/views/category_screen/category_details.dart';
 import 'package:Indi_shark/widgets_common/bg_widget.dart';
 import 'package:flutter/cupertino.dart';
@@ -11,6 +12,9 @@ class CategoryScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.put(ProductController());
+
+
     return bgWidget(
       child: Scaffold(
         appBar: AppBar(
@@ -30,8 +34,11 @@ class CategoryScreen extends StatelessWidget {
                 10.heightBox,
                 categoriesList[index].text.color(darkFontGrey).align(TextAlign.center).make(),
               ],
-            ).box.white.rounded.clip(Clip.antiAlias).outerShadowSm.make().onTap(() { 
-              Get.to(()=>CategoryDetails(title: categoriesList[index]));
+            ).box.white.rounded.clip(Clip.antiAlias).outerShadowSm.make().onTap(() {
+              controller.getSubCategories(categoriesList[index]);
+
+              Get.to(
+                      ()=>CategoryDetails(title: categoriesList[index]));
             });
 
               }

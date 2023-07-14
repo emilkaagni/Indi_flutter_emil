@@ -4,6 +4,7 @@ import 'dart:io';
 
 import 'package:Indi_shark/consts/consts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -17,14 +18,16 @@ class ProfileController extends GetxController{
 
   //textfeild
   var nameController = TextEditingController();
-  var passController = TextEditingController();
+  var newpassController = TextEditingController();
+  var oldpassController = TextEditingController();
+
 
 
   changeImage(context)async{
     try {
       final img = await ImagePicker().pickImage(source: ImageSource.gallery, imageQuality: 70);
-    if(img==null) return;
-    profileImgPath.value=img.path;
+      if(img==null) return;
+      profileImgPath.value=img.path;
     } on PlatformException catch(e) {
       VxToast.show(context, msg: e.toString());
     }
@@ -44,5 +47,14 @@ class ProfileController extends GetxController{
       'imageUrl':imgUrl},SetOptions(merge: true));
     isloading(false);
 
+  }
+  changeAuthPassword({email, password, newpassword})async{
+    final cred = EmailAuthProvider.credential(email: email, password: password);
+    
+    await currentUser!.reauthenticateWithCredential(cred).then((value) {
+      currentUser!.updatePassword(newpassword);
+    }).catchError((error){
+      print(error.toString());
+    });
   }
 }
