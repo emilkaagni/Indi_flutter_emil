@@ -10,9 +10,6 @@ import 'package:get/get.dart';
 
 
 
-
-
-
 class ItemDetails extends StatelessWidget {
   final String? title;
   final dynamic data;
@@ -107,6 +104,8 @@ class ItemDetails extends StatelessWidget {
 
                         ],
                       ).box.height(60).padding(const EdgeInsets.symmetric(horizontal: 16)).color(textfieldGrey).make(),
+
+
                     //  color section
                       20.heightBox,
                       Obx(
@@ -117,32 +116,34 @@ class ItemDetails extends StatelessWidget {
                                 SizedBox(
                                   width: 100,
                                   child: "Color: ".text.color(textfieldGrey).make(),
-
                                 ),
                                 Row(
                                   children: List.generate(
-                                  data['p_colors'].length,
-                                        (index) => Stack(
-                                          alignment: Alignment.center,
-                                          children: [
-                                            VxBox()
-                                                .size(40, 40)
-                                                .roundedFull
-                                                .color(Color(data['p_colors'][index].withOpacity(1.0)))
-                                                .margin(const EdgeInsets.symmetric(horizontal: 4))
-                                                .make()
-                                                .onTap(() {
-                                                  controller.changeColorIndex(index);
-                                            }),
-                                            Visibility(
-                                                visible: index == controller.colorIndex.value,
-                                                child: const Icon(Icons.done, color: Colors.white),)
-
-
-                                          ],
-                                        ),
-                                  )
+                                    data['p_colors'].length,
+                                        (index) {
+                                      Color color = Color(data['p_colors'][index]).withOpacity(1.0);
+                                      return Stack(
+                                        alignment: Alignment.center,
+                                        children: [
+                                          VxBox()
+                                              .size(40, 40)
+                                              .roundedFull
+                                              .color(color)
+                                              .margin(const EdgeInsets.symmetric(horizontal: 4))
+                                              .make()
+                                              .onTap(() {
+                                            controller.colorIndex.value=index;
+                                          }),
+                                          Visibility(
+                                            visible: index == controller.colorIndex.value,
+                                            child: const Icon(Icons.done, color: Colors.white),
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  ),
                                 ),
+
                               ],
                             ).box.padding(const EdgeInsets.all(8)).make(),
 
