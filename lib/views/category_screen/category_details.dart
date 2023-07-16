@@ -63,7 +63,7 @@ class CategoryDetails extends StatelessWidget {
                                   .make()),
                         ),
                       ),
-                      //  items coontainer
+                      //  items container
 
                       20.heightBox,
 
@@ -95,7 +95,7 @@ class CategoryDetails extends StatelessWidget {
                                     .roundedSM.outerShadowSm
                                     .padding(const EdgeInsets.all(12))
                                     .make().onTap(() {
-                                  Get.to(()=>ItemDetails(title: "${data[index]['p_name']}", data: [index],));
+                                  Get.to(()=>ItemDetails(title: "${data[index]['p_name']}", data: data[index],));
                                 });
 
                               }))

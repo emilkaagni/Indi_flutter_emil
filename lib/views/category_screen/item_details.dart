@@ -54,12 +54,10 @@ class ItemDetails extends StatelessWidget {
                     children: [
                     //  swiper section
 
-                    //im haviing error here in item count
                       VxSwiper.builder(
                           autoPlay: true,
                           height: 350,
-                          itemCount: 3,
-                          // itemCount: data['p_imgs'].length,
+                          itemCount: data['p_imgs'].length,
                           aspectRatio: 16/9,
                           viewportFraction: 1.0,
                           itemBuilder: (context, index){
@@ -76,8 +74,7 @@ class ItemDetails extends StatelessWidget {
                     //  rating
                       VxRating(
                           isSelectable: false,
-                          //here aswell i get error with this point
-                          // value: double.parse(data['p_rating']),
+                          value: double.parse(data['p_rating']),
                           onRatingUpdate: (value){},
                           normalColor: textfieldGrey,
                           selectionColor: golden,
@@ -87,8 +84,7 @@ class ItemDetails extends StatelessWidget {
                           // stepInt: true
                       ),
                       10.heightBox,
-                      //price part not working aswell
-                      // "${data['p_price']}".nunCurrency.text.color(redColor).fontFamily(bold).size(18).make(),
+                      "${data['p_price']}".numCurrency.text.color(redColor).fontFamily(bold).size(18).make(),
 
                       10.heightBox,
 
@@ -99,10 +95,8 @@ class ItemDetails extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              "Seller".text.white.fontFamily(semibold).make(),
                               5.heightBox,
-                              //here aswell
-                              // "${data['p_seller']}".text.fontFamily(semibold).color(darkFontGrey).size(16).make(),
+                              "${data['p_seller']}".text.fontFamily(semibold).color(darkFontGrey).size(16).make(),
                             ],
                           )),
                           const CircleAvatar(
@@ -127,28 +121,24 @@ class ItemDetails extends StatelessWidget {
                                 ),
                                 Row(
                                   children: List.generate(
-                                    3,
-                                  //remove 3 above and use the following when data issue is resolved
-                                  // data['p_colors'].length,
+                                  data['p_colors'].length,
                                         (index) => Stack(
                                           alignment: Alignment.center,
                                           children: [
                                             VxBox()
                                                 .size(40, 40)
                                                 .roundedFull
-                                                .color(Vx.randomPrimaryColor)
-
-                                                //remove above color and insert the one below when resolved
-                                                // .color(Color(data['p_color'[index].withOpacity(1.0))
+                                                .color(Color(data['p_colors'][index].withOpacity(1.0)))
                                                 .margin(const EdgeInsets.symmetric(horizontal: 4))
-                                                .make().onTap(() {
+                                                .make()
+                                                .onTap(() {
                                                   controller.changeColorIndex(index);
                                             }),
                                             Visibility(
-                                                visible: index == controller.colorIndex.value ,
+                                                visible: index == controller.colorIndex.value,
                                                 child: const Icon(Icons.done, color: Colors.white),)
-                                            
-                                            
+
+
                                           ],
                                         ),
                                   )
@@ -161,7 +151,6 @@ class ItemDetails extends StatelessWidget {
                               children: [
                                 SizedBox(
                                   width: 100,
-                                  // child: "Color: ".text.color(textfieldGrey).make(),
                                   child: "Quantity: ".text.color(textfieldGrey).make(),
 
                                 ),
@@ -183,8 +172,7 @@ class ItemDetails extends StatelessWidget {
                                               },
                                               icon: const Icon(Icons.add)),
                                           10.widthBox,
-                                          "(10 available)".text.color(textfieldGrey).make(),
-                                          // "(${data['p_quantity']}available)".text.color(textfieldGrey).make(),
+                                          "(${data['p_quantity']}available)".text.color(textfieldGrey).make(),
                                         ],
                                       ),
                                 ),
@@ -199,7 +187,6 @@ class ItemDetails extends StatelessWidget {
                                   child: "Total: ".text.color(textfieldGrey).make(),
 
                                 ),
-                                "\$0.00".text.color(redColor).size(16).fontFamily(bold).make(),
                                 "${controller.totalPrice.value}".numCurrency.text.color(redColor).size(16).fontFamily(bold).make(),
 
                               ],
@@ -213,8 +200,7 @@ class ItemDetails extends StatelessWidget {
                     //  description section
                       "Description".text.color(darkFontGrey).fontFamily(semibold).make(),
                       10.heightBox,
-                      "this is a dummy item and dummy description... ".text.color(darkFontGrey).make(),
-                      // "${data['p__desc']}".text.color(darkFontGrey).make(),
+                      "${data['p_desc']}".text.color(darkFontGrey).make(),
 
                       //Buttons section
 
