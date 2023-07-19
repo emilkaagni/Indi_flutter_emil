@@ -19,8 +19,8 @@ class _SplashScreenState extends State<SplashScreen> {
   changeScreen(){
     Future.delayed(const Duration(seconds: 3),(){
       //  using getx
-      //   Get.to(()=>const LoginScreen());
-        Get.to(()=>const Home());
+        Get.to(()=>const LoginScreen());
+      //   Get.to(()=>const Home());
       // auth.authStateChanges().listen((User? user) {
       //   if(user == null && mounted){
       //     Get.to(()=> const LoginScreen());

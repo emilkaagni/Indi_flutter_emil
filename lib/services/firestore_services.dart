@@ -15,7 +15,8 @@ class FirestoreServices{
   }
 
   static getCart(uid){
-    return firestore.collection(cartCollection).where('added by', isEqualTo: uid).snapshots();
+    print(uid);
+    return firestore.collection(cartCollection).where('added_by', isEqualTo: uid).snapshots();
 
   }
 

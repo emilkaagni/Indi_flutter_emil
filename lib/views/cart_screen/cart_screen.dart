@@ -27,8 +27,9 @@ class CartScreen extends StatelessWidget {
             stream: FirestoreServices.getCart(currentUser!.uid),
 
             builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
-              if(snapshot.hasData){
-                return Center(child: loadingIndicator(),
+              if(!snapshot.hasData){
+                return Center(
+                  child: loadingIndicator(),
                 );
               }else if(snapshot.data!.docs.isEmpty){
                 return Center(
@@ -50,8 +51,9 @@ class CartScreen extends StatelessWidget {
                             itemBuilder: (BuildContext context, int index){
                               return ListTile(
                                 leading: Image.network(
-                                    "${data[index]['img']}"),
-                              title: "$data[index]['title']} (x${data[index]['qty']})"
+                                    "${data[index]['img']}",
+                                ),
+                                title: "${data[index]['title']} (x${data[index]['qty']})"
                                   .text
                                   .fontFamily(semibold)
                                   .size(16)
