@@ -1,5 +1,6 @@
 import 'package:Indi_shark/controllers/cart_controller.dart';
 import 'package:Indi_shark/services/firestore_services.dart';
+import 'package:Indi_shark/views/cart_screen/shipping_screen.dart';
 import 'package:Indi_shark/widgets_common/our_button.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,6 +19,18 @@ class CartScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: whiteColor,
+      bottomNavigationBar: SizedBox(
+        height: 70,
+        child: ourButton(
+            color: redColor,
+            onPress: (){
+              Get.to(
+                      ()=>const ShippingDetails());
+            },
+            textColor: whiteColor,
+            title: "Proceed to shipping"
+        ),
+      ),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: "Shopping cart"
@@ -96,15 +109,15 @@ class CartScreen extends StatelessWidget {
                         ],
                       ).box.padding(EdgeInsets.all(12)).color(lightGolden).width(context.screenWidth -60).roundedSM.make(),
                       10.heightBox,
-                      SizedBox(
-                        width: context.screenWidth -60,
-                        child: ourButton(
-                            color: redColor,
-                            onPress: (){},
-                            textColor: whiteColor,
-                            title: "Proceed to shipping"
-                        ),
-                      ),
+                      // SizedBox(
+                      //   width: context.screenWidth -60,
+                      //   child: ourButton(
+                      //       color: redColor,
+                      //       onPress: (){},
+                      //       textColor: whiteColor,
+                      //       title: "Proceed to shipping"
+                      //   ),
+                      // ),
                     ],
                   ),
                 );
