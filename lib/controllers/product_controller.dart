@@ -1,5 +1,6 @@
 import 'package:Indi_shark/consts/consts.dart';
 import 'package:Indi_shark/models/category_model.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -9,6 +10,8 @@ class ProductController extends GetxController{
   var quantity = 0.obs;
   var colorIndex = 0.obs;
   var totalPrice = 0.obs;
+
+  var isFav = false.obs;
 
   getSubCategories(title) async{
     subcat.clear();
@@ -56,5 +59,17 @@ class ProductController extends GetxController{
     quantity.value=0;
     colorIndex.value=0;
   }
+  
+  
+  addToWishlist(docId) async{
+    await firestore.collection(productsCollection).doc(docId).set({
+      'p_wishlist':FieldValue.arrayUnion([currentUser!.uid])
 
+    }, SetOptions(merge: true));
+  }
+  removeFromWishlist(docId) async {
+    await firestore.collection(productsCollection).doc(docId).set({
+      'p_wishlist': FieldValue.arrayRemove([currentUser!.uid])
+    }, SetOptions(merge: true));
+  }
 }

@@ -1,6 +1,7 @@
 import 'package:Indi_shark/consts/consts.dart';
 import 'package:Indi_shark/consts/list.dart';
 import 'package:Indi_shark/controllers/product_controller.dart';
+import 'package:Indi_shark/views/chat_screen/chat_screen.dart';
 import 'package:Indi_shark/widgets_common/our_button.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -41,9 +42,17 @@ class ItemDetails extends StatelessWidget {
                   color: darkFontGrey,
                 )),
             IconButton(
-                onPressed: (){},
+                onPressed: (){
+                  if(controller.isFav.value){
+                    controller.removeFromWishlist(data.id);
+                    controller.isFav(false);
+                  }else{
+                    controller.addToWishlist(data.id);
+                    controller.isFav(true);
+                  }
+                },
                 icon: const Icon(
-                  Icons.favorite_outline,
+                  Icons.favorite_outlined,
 
                 )),
 
@@ -110,7 +119,12 @@ class ItemDetails extends StatelessWidget {
                               backgroundColor: Colors.white,
                               child: Icon(Icons.message_rounded, color: darkFontGrey),
 
-                              )
+                              ).onTap(() {
+                                Get.to(
+                                        ()=> const ChatScreen(),
+                                  arguments: [data['p_seller'],data ['vendor_id']],
+                                );
+                            })
 
                           ],
                         ).box.height(60).padding(const EdgeInsets.symmetric(horizontal: 16)).color(textfieldGrey).make(),
