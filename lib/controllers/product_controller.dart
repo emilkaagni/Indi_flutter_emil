@@ -1,3 +1,4 @@
+
 import 'package:Indi_shark/consts/consts.dart';
 import 'package:Indi_shark/models/category_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -61,17 +62,21 @@ class ProductController extends GetxController{
   }
   
   
-  addToWishlist(docId) async{
+  addToWishlist(docId, context) async{
     await firestore.collection(productsCollection).doc(docId).set({
       'p_wishlist':FieldValue.arrayUnion([currentUser!.uid])
     }, SetOptions(merge: true));
     isFav(true);
+    VxToast.show(context, msg: "added to wishlist");
+
   }
-  removeFromWishlist(docId) async {
+  removeFromWishlist(docId, context) async {
     await firestore.collection(productsCollection).doc(docId).set({
       'p_wishlist': FieldValue.arrayRemove([currentUser!.uid])
     }, SetOptions(merge: true));
     isFav(false);
+
+    VxToast.show(context, msg: "Removed from wishlist");
   }
 
   checkIfFav(data) async{
