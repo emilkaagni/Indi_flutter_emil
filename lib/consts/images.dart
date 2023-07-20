@@ -90,6 +90,7 @@ const imgP6 = "assets/images/p6.jpeg";
 const imgP7 = "assets/images/p7.jpeg";
 const imgPayfast = "assets/images/payfast.png";
 const imgPayhere = "assets/images/payhere.png";
+const imgKhalti = "assets/images/khalti.png";
 const imgPaypal = "assets/images/paypal.png";
 const imgPaystack = "assets/images/paystack.png";
 const imgPaytm = "assets/images/paytm.png";

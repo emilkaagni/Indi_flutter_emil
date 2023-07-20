@@ -59,3 +59,6 @@ const video = "Video",
 
 // profile strings
 const wishlist = "My Wishlist", orders = "My orders", message = "Messeges", oldpass ="Old Password", newpass = "New Password";
+
+//payment method strings
+const paypal = "Paypal", khalti = "khalti", cod = "Cash On Delivery";
