@@ -27,12 +27,15 @@ class ItemDetails extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: lightGrey,
+
         appBar: AppBar(
-          leading: IconButton(onPressed: (){
-            controller.resetValues();
-            Get.back();
+          leading: IconButton(
+              onPressed: (){
+                controller.resetValues();
+                Get.back();
           },
-              icon: Icon(Icons.arrow_back)),
+              icon: Icon(Icons.arrow_back)
+          ),
           title: title!.text.color(darkFontGrey).fontFamily(bold).make(),
           actions: [
             IconButton(
@@ -41,20 +44,23 @@ class ItemDetails extends StatelessWidget {
                   Icons.share,
                   color: darkFontGrey,
                 )),
-            IconButton(
-                onPressed: (){
-                  if(controller.isFav.value){
-                    controller.removeFromWishlist(data.id);
-                    controller.isFav(false);
-                  }else{
-                    controller.addToWishlist(data.id);
-                    controller.isFav(true);
-                  }
-                },
-                icon: const Icon(
-                  Icons.favorite_outlined,
+            Obx(
+                    ()=> IconButton(
+                        onPressed: (){
+                          if(controller.isFav.value){
+                            controller.removeFromWishlist(data.id);
+                            // controller.isFav(false);
+                          }else{
+                            controller.addToWishlist(data.id);
+                            // controller.isFav(true);
+                          }
+                          },
+                        icon: Icon(
+                          Icons.favorite_outlined,
+                          color: controller.isFav.value ? redColor : darkFontGrey,
 
-                )),
+                  )),
+            ),
 
           ],
         ),

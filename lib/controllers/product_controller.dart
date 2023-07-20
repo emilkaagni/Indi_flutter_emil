@@ -64,12 +64,21 @@ class ProductController extends GetxController{
   addToWishlist(docId) async{
     await firestore.collection(productsCollection).doc(docId).set({
       'p_wishlist':FieldValue.arrayUnion([currentUser!.uid])
-
     }, SetOptions(merge: true));
+    isFav(true);
   }
   removeFromWishlist(docId) async {
     await firestore.collection(productsCollection).doc(docId).set({
       'p_wishlist': FieldValue.arrayRemove([currentUser!.uid])
     }, SetOptions(merge: true));
+    isFav(false);
+  }
+
+  checkIfFav(data) async{
+    if(data['p_wishlist'].contains(currentUser!.uid)){
+      isFav(true);
+    } else{
+      isFav(false);
+    }
   }
 }
