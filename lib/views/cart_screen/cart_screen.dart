@@ -51,6 +51,7 @@ class CartScreen extends StatelessWidget {
               }else{
                 var data = snapshot.data!.docs;
                 controller.calculate(data);
+                controller.productSnapshot = data;
 
 
 
@@ -98,7 +99,7 @@ class CartScreen extends StatelessWidget {
                           "Total Price".text.fontFamily(semibold).color(darkFontGrey).make(),
 
                           Obx(
-                                ()=> "${controller.total1P.value}"
+                                ()=> "${controller.totalP.value}"
                                     .numCurrency
                                     .text
                                     .fontFamily(semibold)

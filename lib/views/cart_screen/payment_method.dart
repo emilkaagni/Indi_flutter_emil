@@ -18,7 +18,11 @@ class PaymentMethod extends StatelessWidget {
       bottomNavigationBar: SizedBox(
         height: 60,
         child: ourButton(
-          onPress: (){},
+          onPress: (){
+            controller.placeMyOrder(
+                orderPaymentMethod:paymentMethods[controller.paymentIndex.value],
+                totalAmount: controller.totalP.value);
+          },
           color: redColor,
           textColor: whiteColor,
           title: "Place my order",
@@ -70,7 +74,7 @@ class PaymentMethod extends StatelessWidget {
                       )
                           :Container(),
                       Positioned(
-                        bottom: 0,
+                        bottom: 10,
                           right: 10,
                           child: paymentMethods[index].text.white.fontFamily(semibold).size(16).make()),
 
