@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 
+import '../consts/consts.dart';
 import '../consts/firebase_consts.dart';
 
 class HomeController extends GetxController{
@@ -15,6 +16,10 @@ class HomeController extends GetxController{
   var currentNavIndex = 0.obs;
 
   var username = '';
+
+  var featuredList = [];
+
+  var searchController = TextEditingController();
 
   getUsername()async {
     var n = await firestore.collection(userCollection).where(

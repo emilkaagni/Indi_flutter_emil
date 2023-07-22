@@ -1,9 +1,11 @@
 import 'package:Indi_shark/consts/colors.dart';
 import 'package:Indi_shark/consts/consts.dart';
 import 'package:Indi_shark/consts/list.dart';
+import 'package:Indi_shark/controllers/home_controller.dart';
 import 'package:Indi_shark/services/firestore_services.dart';
 import 'package:Indi_shark/views/category_screen/item_details.dart';
 import 'package:Indi_shark/views/home_screen/components/featured_button.dart';
+import 'package:Indi_shark/views/home_screen/search_screen.dart';
 import 'package:Indi_shark/widgets_common/home_buttons.dart';
 import 'package:Indi_shark/widgets_common/loading_indicator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -16,6 +18,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var controller = Get.find<HomeController>();
     return Container(
       color: lightGrey,
       width: context.screenWidth,
@@ -28,15 +31,23 @@ class HomeScreen extends StatelessWidget {
               height: 60,
               color: lightGrey,
               child: TextFormField(
-                decoration: const InputDecoration(
+                controller: controller.searchController,
+                decoration: InputDecoration(
                   border: InputBorder.none,
-                  suffixIcon: Icon(Icons.search),
+                  suffixIcon: const Icon(Icons.search).onTap(() {
+                    if(controller.searchController.text.isNotEmptyAndNotNull){
+                      Get.to(()=> SearchScreen(title: controller.searchController.text,));
+
+                    }
+
+
+                  }),
                   filled: true,
                   fillColor: whiteColor,
                   hintText: searchanything,
                   hintStyle: TextStyle(color: textfieldGrey),
                 ),
-              ),
+              ).box.outerShadowMd.make(),
             ),
         10.heightBox,
             Expanded(
@@ -247,6 +258,7 @@ class HomeScreen extends StatelessWidget {
                                       "${ allproductsdata[index]['p_name']}".text.fontFamily(semibold).make(),
                                       10.heightBox,
                                       "${allproductsdata[index]['p_price']}".text.color(redColor).fontFamily(bold).size(16).make(),
+                                      10.heightBox
                                     ],
                                   )
                                       .box
