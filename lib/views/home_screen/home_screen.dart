@@ -137,24 +137,60 @@ class HomeScreen extends StatelessWidget {
                           10.heightBox,
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
-                            child: Row(
-                              children:
-                                List.generate(
-                                    6,
-                                        (index) => Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Image.asset(
-                                              imgP1,
-                                              width: 150,
-                                              fit: BoxFit.cover,
-                                            ),
-                                            10.heightBox,
-                                            "Laptop 4GB/64GB".text.fontFamily(semibold).make(),
-                                            10.heightBox,
-                                            "\$600".text.color(redColor).fontFamily(bold).size(16).make(),
-                                          ],
-                                        ).box.white.margin(const EdgeInsets.symmetric(horizontal: 4)).roundedSM.padding(const EdgeInsets.all(8)).make()),
+                            child: FutureBuilder(
+                              future: FirestoreServices.getFeaturedProducts(),
+                              builder: (context,AsyncSnapshot<QuerySnapshot>snapshot) {
+                                if (!snapshot.hasData) {
+                                  return Center(
+                                    child: loadingIndicator(),
+                                  );
+                                } else if (snapshot.data!.docs.isEmpty) {
+                                  return "No featured products".text.white
+                                      .makeCentered();
+                                } else {
+                                  var featuredData = snapshot.data!.docs;
+
+
+                                  return Row(
+                                    children:
+                                    List.generate(
+                                        featuredData.length,
+                                            (index) =>
+                                            Column(
+                                              crossAxisAlignment: CrossAxisAlignment
+                                                  .start,
+                                              children: [
+                                                Image.network(
+                                                  featuredData[index]['p_imgs'][0],
+                                                  height: 160,
+                                                  width: 150,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                                10.heightBox,
+                                                "${featuredData[index]['p_name']}".text
+                                                    .fontFamily(semibold)
+                                                    .make(),
+                                                10.heightBox,
+                                                "${featuredData[index]['p_price']}".numCurrency.text.color(redColor)
+                                                    .fontFamily(bold).size(16)
+                                                    .make(),
+                                              ],
+                                            ).box.white
+                                                .margin(
+                                                const EdgeInsets.symmetric(
+                                                    horizontal: 4))
+                                                .roundedSM
+                                                .padding(
+                                                const EdgeInsets.all(8))
+                                                .make().onTap(() {
+                                              Get.to(()=>ItemDetails(
+                                                title: "${featuredData[index]['p_name']}",
+                                                data: featuredData[index],
+                                              ));
+                                            })),
+                                  );
+                                }
+                              }
                             ),
                           )
                         ],

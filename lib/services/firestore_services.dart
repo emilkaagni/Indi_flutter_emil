@@ -70,6 +70,11 @@ class FirestoreServices{
     return firestore.collection(productsCollection).snapshots();
 
   }
+//  get featured products method
+  static getFeaturedProducts(){
+    return firestore.collection(productsCollection).where('is_featured', isEqualTo: true).get();
+
+  }
 
 
 

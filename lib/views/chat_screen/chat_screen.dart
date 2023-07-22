@@ -26,23 +26,27 @@ class ChatScreen extends StatelessWidget {
         child: Column(
           children: [
             Obx(()=>
-            controller.isLoading.value ? Center(
-            child: loadingIndicator(),
-            )
-
-              : Expanded(
+                controller.isLoading.value
+                ? Center(
+                child: loadingIndicator(),
+                ):
+                Expanded(
                   child: StreamBuilder(
                     stream: FirestoreServices.getChatMessages(controller.chatDocId.toString()),
                     builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
+                      // if (snapshot.connectionState == ConnectionState.waiting) {
+                        if(!snapshot.hasData){
                         return Center(
                           child: loadingIndicator(),
                         );
-                      } else if (snapshot.hasError) {
+                      }
+                      else if (snapshot.hasError) {
                         return Center(
                           child: Text('Error: ${snapshot.error}'),
                         );
-                      } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                      }
+                      // else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                      else if(snapshot.data!.docs.isEmpty){
                         return Center(
                           child: "Send a message...".text.color(darkFontGrey).make(),
                         );

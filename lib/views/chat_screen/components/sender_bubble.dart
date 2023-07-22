@@ -22,7 +22,6 @@ Widget senderBubble(DocumentSnapshot data){
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-
         children: [
           "${data['msg']}".text.white.size(16).make(),
           10.heightBox,
