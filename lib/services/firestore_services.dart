@@ -11,6 +11,10 @@ class FirestoreServices{
   //   get products according to category
   static getProducts(category){
     return firestore.collection(productsCollection).where('p_category', isEqualTo: category).snapshots();
+  }
+
+  static getSubCategoryProducts(title){
+    return firestore.collection(productsCollection).where('p_subcategory', isEqualTo: title).snapshots();
 
   }
 
