@@ -31,7 +31,7 @@ class EditProfileScreen extends StatelessWidget {
                 children: [
 
 
-                  //if data imafe url and controller path is empty
+                  //if data image url and controller path is empty
                   data['imageUrl']=='' && controller.profileImgPath.isEmpty
                       ? Image.asset(imgProfile2, width: 100, fit: BoxFit.cover).box.roundedFull.clip(Clip.antiAlias).make()
                   //if data is not empty but controller path is empty

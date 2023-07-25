@@ -18,6 +18,7 @@ class CartController extends GetxController{
 
   late dynamic productSnapshot;
   var products = [];
+  var vendors = [];
 
   var placingOrder = false.obs;
 
@@ -54,13 +55,15 @@ class CartController extends GetxController{
       'order_delivered': false,
       'order_on_delivery':false,
       'total_amount': totalAmount,
-      'orders': FieldValue.arrayUnion(products)
+      'orders': FieldValue.arrayUnion(products),
+      'vendors': FieldValue.arrayUnion(vendors),
 
     });
     placingOrder(false);
   }
   getProductDetails(){
     products.clear();
+    vendors.clear();
     for (var i = 0; i< productSnapshot.length; i++){
       products.add({
         'color':productSnapshot[i]['color'],
@@ -73,6 +76,7 @@ class CartController extends GetxController{
         'title':productSnapshot[i]['title'],
 
       });
+      vendors.add(productSnapshot[i]['vendor_id']);
 
     }
   }

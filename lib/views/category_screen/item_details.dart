@@ -105,6 +105,7 @@ class ItemDetails extends StatelessWidget {
                             size: 25,
                             // stepInt: true
                         ),
+
                         10.heightBox,
                         "${data['p_price']}".numCurrency.text.color(redColor).fontFamily(bold).size(18).make(),
 
@@ -177,7 +178,7 @@ class ItemDetails extends StatelessWidget {
                                 ],
                               ).box.padding(const EdgeInsets.all(8)).make(),
 
-                            //  qantity row
+                            //  quantity row
                               Row(
                                 children: [
                                   SizedBox(
@@ -229,6 +230,7 @@ class ItemDetails extends StatelessWidget {
                         ),
 
                       //  description section
+                        10.heightBox,
                         "Description".text.color(darkFontGrey).fontFamily(semibold).make(),
                         10.heightBox,
                         "${data['p_desc']}".text.color(darkFontGrey).make(),
